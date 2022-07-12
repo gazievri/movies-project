@@ -9,11 +9,11 @@ export function checkResponse(response) {
 }
 
 export function getData() {
-  return fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=friends`)
+  return fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=friends`)
     .then(checkResponse);
 }
 
 export function getSearch(keyWords, type) {
-  return fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${keyWords}${type && `&type=${type}`}`)
+  return fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${keyWords}${type && `&type=${type}`}`)
   .then(checkResponse);
 }

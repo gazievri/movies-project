@@ -33,6 +33,7 @@ class Search extends React.Component {
             value={search}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
+            autocomplete = "off"
           />
           <button className="btn search-btn" onClick={this.handleClick}>
             Search
