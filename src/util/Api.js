@@ -1,3 +1,5 @@
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 export function checkResponse(response) {
   if (response.ok) {
     return response.json();
@@ -7,12 +9,11 @@ export function checkResponse(response) {
 }
 
 export function getData() {
-  return fetch("http://www.omdbapi.com/?apikey=ff893278&s=bond")
+  return fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=friends`)
     .then(checkResponse);
 }
 
-export function getSearch(keyWords) {
-  return fetch(`http://www.omdbapi.com/?apikey=ff893278&s=${keyWords}`)
+export function getSearch(keyWords, type) {
+  return fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${keyWords}${type && `&type=${type}`}`)
   .then(checkResponse);
 }
-

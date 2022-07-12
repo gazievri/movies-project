@@ -9,31 +9,33 @@ class Main extends React.Component {
     super();
     this.state = {
       movies: [],
+      loading: true,
     };
   }
 
   componentDidMount() {
     Api.getData()
       .then((data) => {
-        this.setState({ movies: data.Search });
+        this.setState({ movies: data.Search, loading: false });
       })
       .catch((err) => console.log(err));
   }
 
-  searchMovies = (keyWords) => {
-    Api.getSearch(keyWords)
+  searchMovies = (keyWords, type) => {
+    this.setState({ loading: true })
+    Api.getSearch(keyWords, type)
       .then((data) => {
-        this.setState({ movies: data.Search })
+        this.setState({ movies: data.Search, loading: false })
       })
       .catch((err) => console.log(err));
   }
 
   render() {
-    const { movies } = this.state;
+    const { movies, loading } = this.state;
     return (
       <main className="container content">
         <Search searchMovies={this.searchMovies} />
-        {movies.length ? <Movies movies={movies} /> : <Preloader />}
+        {!loading ? <Movies movies={movies} /> : <Preloader />}
       </main>
     );
   }
